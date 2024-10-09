@@ -1,0 +1,3 @@
+args.model_dir None
+model_dir data/ft_plms/llama_base/artifacts_exp_pools_ss_None/rank_128_w_20_gamma_1.0_sfd_256_lr_0.0001_wd_0.0001_warm_2000_epochs_3_seed_100003/early_stop_-1_best_model
+best_model_dir data/ft_plms/llama_base/artifacts_exp_pools_ss_None/rank_128_w_20_gamma_1.0_sfd_256_lr_0.0001_wd_0.0001_warm_2000_epochs_3_seed_100003/early_stop_-1_best_model
