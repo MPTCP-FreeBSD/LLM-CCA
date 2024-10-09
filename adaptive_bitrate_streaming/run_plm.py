@@ -271,6 +271,8 @@ def run(args):
         print("args.model_dir",args.model_dir)
         print("model_dir", model_dir)
         print("best_model_dir", best_model_dir)
+        #要运行的模型的存放地址，根据需要修改。 early_stop_-1_best_model代表最好的模型
+        #The storage path of the model to be run should be modified as needed. early_stop_-1_best_model represents the best model.
         model_dir = "data/ft_plms/llama_base/._ss_None/rank_128_w_20_gamma_1.0_sfd_256_lr_0.0001_wd_0.0001_warm_2000_epochs_60_seed_100003/early_stop_-1_best_model"
         assert os.path.exists(model_dir), f'Model weight dir {model_dir} does not exist.'
         test(args, rl_policy, exp_dataset, exp_dataset_info, env_settings, checkpoint_dir, best_model_dir, process_reward)
