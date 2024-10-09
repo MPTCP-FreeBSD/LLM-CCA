@@ -1,34 +1,13 @@
-# #show_pkl.py
- 
-# import pickle
-# path='exp_pool.pkl'   #path='/root/……/aus_openface.pkl'   pkl文件所在路径
-	   
-# f=open(path,'rb')
-# data=pickle.load(f)
- 
-# print(data)
-# print(len(data))
-
-
 import pickle
 from plm_special.data.exp_pool import ExperiencePool  # 导入 ExperiencePool 类
 
-# 指定 .pkl 文件路径和输出的 .txt 文件路径
 
-#官方的
-#pkl_path = 'exp_pool.pkl'
-#txt_path = 'exp_pool_contents.txt'
-
-#pkl_path = 'cwnd_rtt_experience_pool.pkl'
-#txt_path = 'cwnd_rtt_experience_pool.txt'
 #这里是pkl的路径
+#Path of the loaded PKL
 pkl_path = 'C:\\Users\\10111\\Desktop\\SIT724\\Runpod\experiment data\\通过脚本或取得prague和cubic的数据\\prague cwnd script\\第三次实验\\只跑prague\\prague_exp_pool.pkl'
-# #这里是生成的txt的路径
+#这里是生成的txt的路径
+#Path of output txt
 txt_path = 'C:\\Users\\10111\\Desktop\\SIT724\\Runpod\experiment data\\通过脚本或取得prague和cubic的数据\\prague cwnd script\\第三次实验\\只跑prague\\prague_exp_pool.txt'
-
-# pkl_path = 'C:\\Users\\10111\\Desktop\\SIT724\\Runpod\experiment data\\通过脚本或取得prague和cubic的数据\\prague cwnd script\\第三次实验\\prague和cubic同时跑的数据\\competing_prague_output_rtt_cwnd_throughput.pkl'
-# #这里是生成的txt的路径
-# txt_path = 'C:\\Users\\10111\\Desktop\\SIT724\\Runpod\experiment data\\通过脚本或取得prague和cubic的数据\\prague cwnd script\\第三次实验\\prague和cubic同时跑的数据\\competing_prague_output_rtt_cwnd_throughput.txt'
 
 # 打开 .pkl 文件并加载内容
 with open(pkl_path, 'rb') as f:

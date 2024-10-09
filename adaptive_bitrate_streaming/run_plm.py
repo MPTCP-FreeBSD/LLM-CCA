@@ -26,7 +26,8 @@ from plm_special.utils.utils import set_random_seed
 from plm_special.utils.plm_utils import load_plm
 from plm_special.utils.console_logger import ConsoleLogger
 
-
+# The model currently uses MSE as the loss function for predicting CWND.
+# If needed, it can be manually changed to CE Loss.
 class ExperiencePool:
     """
     Experience pool for collecting trajectories.
@@ -100,7 +101,7 @@ def adapt(args, model, exp_dataset, exp_dataset_info, eval_env_settings, checkpo
         optimizer,
         lambda steps: min((steps + 1) / args.warmup_steps, 1)
     )
-    loss_fn = MSELoss()  # 修改为 MSELoss
+    loss_fn = MSELoss()  #MSELoss可以修改为Cross-Entropy Loss CE Loss | MSELoss can be replaced with Cross-Entropy Loss (CE Loss).
     trainer = Trainer(args, model=model, optimizer=optimizer, exp_dataset=exp_dataset, loss_fn=loss_fn, device=args.device, lr_scheduler=lr_scheduler, 
                       grad_accum_steps=args.grad_accum_steps)
 
@@ -271,9 +272,11 @@ def run(args):
         print("args.model_dir",args.model_dir)
         print("model_dir", model_dir)
         print("best_model_dir", best_model_dir)
+
         #要运行的模型的存放地址，根据需要修改。 early_stop_-1_best_model代表最好的模型
         #The storage path of the model to be run should be modified as needed. early_stop_-1_best_model represents the best model.
         model_dir = "data/ft_plms/llama_base/._ss_None/rank_128_w_20_gamma_1.0_sfd_256_lr_0.0001_wd_0.0001_warm_2000_epochs_60_seed_100003/early_stop_-1_best_model"
+
         assert os.path.exists(model_dir), f'Model weight dir {model_dir} does not exist.'
         test(args, rl_policy, exp_dataset, exp_dataset_info, env_settings, checkpoint_dir, best_model_dir, process_reward)
     
