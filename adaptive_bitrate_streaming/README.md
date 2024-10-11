@@ -1,5 +1,5 @@
 # Preface
-The codes for adaptive bitrate streaming (ABR) are implemented based on the repository of [Genet](https://github.com/GenetProject/Genet/tree/main). Thanks for Genet's authors for their open source codes!
+The code for this project is based on the [NetLLM](https://github.com/duowuyms/NetLLM) repository implementation. Thanks to the NetLLM team for providing the open source code!
 
 What is ABR?
 > The volume of video streaming has reached almost 60% of all the Internet traffic. Streaming video over variable-bandwidth networks (e.g., cellular network) requires the client to adapt the video bitrate to optimize the user experience. In industrial DASH standard, videos are
