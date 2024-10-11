@@ -4,7 +4,7 @@ LLM-CCA (Large Language Model for Congestion Control Algorithms) is a project to
 ## Folder Descriptions
 
 1. **adaptive_bitrate_streaming**
-   - This folder contains the main program files for LLM-CCA, including the core code for implementing adaptive bitrate streaming and the LLM-CCA algorithm.
+   - This folder contains the main program files for LLM-CCA
 
 2. **Generate LLM test images**
    - This folder includes the tools for visualizing the test results of LLM-CCA. The programs here are designed to convert test data into graphical images, facilitating further analysis and evaluation of the model's performance.
