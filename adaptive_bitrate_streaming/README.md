@@ -74,41 +74,20 @@ The code for this project is based on the [NetLLM](https://github.com/duowuyms/N
 python -m pip install --upgrade pip && pip install openprompt==1.0.1 && pip install numpy==1.24.4 && pip install peft==0.6.2 && pip install transformers==4.34.1 && pip install --upgrade huggingface_hub && pip install scikit-learn && pip install munch
 ```
 
-## Environment for baselines
-To run baselines, we need a different environment, since they are mainly written in tensforflow v1.
-
-1. First, create a conda environment with `python=3.7`. Please note that you must install `python=3.7`, since the greater versions of python do not support installing tensorflow 1.x any more.
-
-   `conda create -n abr_tf python=3.7`
-
-2. Next, install the following dependencies.
-   ```sh
-   conda activate abr_tf
-   pip install tensorflow-gpu==1.15
-   pip install tensorboard==1.15.0
-   pip install tensorboard-plugin-wit==1.8.0
-   pip install tflearn==0.5.0
-   pip install numba==0.53.1
-   pip install gym==0.18.0
-   pip install stable-baselines[mpi]==2.10.1
-   pip install pandas==1.1.5
-   pip install tqdm==4.62.2
-   ```
 # Usage
 ## Usage of NetLLM
 To run NetLLM, first we need to download some LLMs. For example, if you want to use Llama2-7b as the foundation model, please download Llama2-7b in the directory: `../downloaded_plms/llama2/base`. In the following, we will use the Llama2-7b as the example to illustrate the usage of NetLLM.
 
 **Finetune LLM**
 
-If you want to finetune LLM, please run the following command:
+If you want to finetune LLM, please run the following command.:
 ```sh
-python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --lr 0.0001 --warmup-steps 2000 --num-epochs 80 --eval-per-epoch 2 
+python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --device-out cuda:1 --lr 0.0001 --warmup-steps 2000 --num-epochs 20 --eval-per-epoch 2 --exp-pool-path ./PKL/1000bbr_exp_pool.pkl 
 ```
-This command will finetune Llama2 on the default experience pool we provided at `artifacts/exp_pools/exp_pool.pkl`.
-If you want to use your own experience pool, first use the `generate_exp_pool.py` to generate a new experience pool.
+This command will finetune Llama2 on the default experience pool we provided at `PKL/1000bbr_exp_pool.pkl`. You can also switch to your desired PKL file based on the data you want to use
+If you want to use your own experience pool, first use the `my_exp_pool_code.py` to generate a new experience pool.
 ```sh
-conda activate abr_tf  # since we need to use baselines to interact with environments, we need to activate the baseline environment first.
-python generate_exp_pool.py --models genet --traces fcc-train --video video1 --trace-num 100 --cuda-id 0
+python my_exp_pool_code.py
 ```
 Next, specify the path to your own experience pool with argument `--exp-pool-path` and run the following command:
 ```sh
@@ -131,36 +110,5 @@ We offer the model checkpoint of the finetuned Llama2-7b here: https://drive.goo
 python run_plm.py --test --plm-type llama --plm-size base --rank 128 --device cuda:0 --model-dir  data/ft_plms/try_llama2_7b
 ```
 
-**Test baselines**
 
-To run baselines, please run:
-```sh
-conda activate abr_tf
-python run_baseline.py --model genet --cuda-id 0
-python run_baseline.py --model mpc 
-python run_baseline.py --model bba 
-```
 
-Note: We do not provide implementation of training baselines, since we reuse their open-source model checkpoints.
-
-# Citation
-If you find this repository useful, please kindly cite the following paper:
-```
-@misc{wu2024netllm,
-      title={NetLLM: Adapting Large Language Models for Networking}, 
-      author={Duo Wu and Xianda Wang and Yaqi Qiao and Zhi Wang and Junchen Jiang and Shuguang Cui and Fangxin Wang},
-      year={2024},
-      eprint={2402.02338},
-      archivePrefix={arXiv},
-      primaryClass={cs.NI},
-      url={https://arxiv.org/abs/2402.02338}, 
-}
-
-@inproceedings{xia2022genet,
-  title={Genet: automatic curriculum generation for learning adaptation in networking},
-  author={Xia, Zhengxu and Zhou, Yajie and Yan, Francis Y and Jiang, Junchen},
-  booktitle={Proceedings of the ACM SIGCOMM 2022 Conference},
-  pages={397--413},
-  year={2022}
-}
-```
