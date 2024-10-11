@@ -80,7 +80,7 @@ To run NetLLM, first we need to download some LLMs. For example, if you want to 
 
 **Finetune LLM**
 
-If you want to finetune LLM, please run the following command:
+If you want to finetune LLM, please run the following command. The number after --num-epochs specifies how many times the model needs to be run in its entirety on the training dataset.:
 ```sh
 python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --device-out cuda:1 --lr 0.0001 --warmup-steps 2000 --num-epochs 20 --eval-per-epoch 2 --exp-pool-path ./PKL/1000bbr_exp_pool.pkl 
 ```
@@ -96,7 +96,7 @@ python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base
 
 **Test LLM**
 
-If you want to test the performance of the finetuned LLM, please run the following command.:
+If you want to test the performance of the finetuned LLM, please run the following command. After running the test command, a number of JSON files are generated in your adaptive folder, depending on the number of epochs you set. It is recommended that you save these JSON files to another folder for subsequent analysis and testing using the procedures in the Log Viz folder.:
 ```sh
 python run_plm.py --test --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --device-out cuda:1 --lr 0.0001 --warmup-steps 2000 --num-epochs 20 --eval-per-epoch 2 --exp-pool-path ./PKL/1000bbr_exp_pool.pkl
 ```
