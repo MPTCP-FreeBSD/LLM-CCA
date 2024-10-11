@@ -80,7 +80,7 @@ To run NetLLM, first we need to download some LLMs. For example, if you want to 
 
 **Finetune LLM**
 
-If you want to finetune LLM, please run the following command.:
+If you want to finetune LLM, please run the following command:
 ```sh
 python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --device-out cuda:1 --lr 0.0001 --warmup-steps 2000 --num-epochs 20 --eval-per-epoch 2 --exp-pool-path ./PKL/1000bbr_exp_pool.pkl 
 ```
@@ -96,19 +96,17 @@ python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base
 
 **Test LLM**
 
-If you want to test the performance of the finetuned LLM, please run the following command:
+If you want to test the performance of the finetuned LLM, please run the following command.:
 ```sh
-python run_plm.py --test --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --lr 0.0001 --warmup-steps 2000 --num-epochs 80 --eval-per-epoch 2
-```
-You can also specify the path to the finetuned LLM with argument `--model-dir`:
-```sh
-python run_plm.py --test --plm-type llama --plm-size base --rank 128 --device cuda:0 --model-dir you_finetune_llm_dir
+python run_plm.py --test --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --device-out cuda:1 --lr 0.0001 --warmup-steps 2000 --num-epochs 20 --eval-per-epoch 2 --exp-pool-path ./PKL/1000bbr_exp_pool.pkl
 ```
 
-We offer the model checkpoint of the finetuned Llama2-7b here: https://drive.google.com/file/d/17UyXJ9rGc0wKUkAhQ4wMrYDEbRPRjil0/view. If you want to try our model, please download the model checkpoint and store it in `data/ft_plms/try_llama2_7b`, and run the following command:
+You can also switch which PKL files you want to use for testing in order to test model performance against different datasets:
 ```sh
-python run_plm.py --test --plm-type llama --plm-size base --rank 128 --device cuda:0 --model-dir  data/ft_plms/try_llama2_7b
+python run_plm.py --test --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --device-out cuda:1 --lr 0.0001 --warmup-steps 2000 --num-epochs 20 --eval-per-epoch 2 --exp-pool-path your_exp_pool_path
 ```
+
+
 
 
 
