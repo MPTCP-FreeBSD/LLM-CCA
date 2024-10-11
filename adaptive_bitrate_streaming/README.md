@@ -43,7 +43,7 @@ The code for this project is based on the [NetLLM](https://github.com/duowuyms/N
 
 - `my exp_pool_code.py`: Implements the generation of experience pool (i.e., training dataset for LLM).
 - `run_baseline.py`: The main file for running baselines. 
-- `run_plm.py`: The main file for running NetLLM.
+- `read_pkl.py`: Converts pkl files to txt format for easier verification of the file contents.
 
 # Environment Setup
 ## Environment for NetLLM
@@ -51,7 +51,7 @@ The code for this project is based on the [NetLLM](https://github.com/duowuyms/N
 
    `conda create -n abr_netllm python>=3.8.10`
 
-2. Then install the following depdendencies:
+2. Then install the following depdendencies one by one:
 
    ```
    python==3.8.10
@@ -62,6 +62,12 @@ The code for this project is based on the [NetLLM](https://github.com/duowuyms/N
    transformers==4.34.1
    peft==0.6.2
    ```
+
+3. Alternatively, you can install everything at once using the following command:
+
+```
+python -m pip install --upgrade pip && pip install openprompt==1.0.1 && pip install numpy==1.24.4 && pip install peft==0.6.2 && pip install transformers==4.34.1 && pip install --upgrade huggingface_hub && pip install scikit-learn && pip install munch
+```
 
 ## Environment for baselines
 To run baselines, we need a different environment, since they are mainly written in tensforflow v1.
