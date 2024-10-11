@@ -1,10 +1,5 @@
 # Preface
-The code for this project is based on the [NetLLM](https://github.com/duowuyms/NetLLM) repository implementation. Thanks to the NetLLM team for providing the open source code!
-
-What is ABR?
-> The volume of video streaming has reached almost 60% of all the Internet traffic. Streaming video over variable-bandwidth networks (e.g., cellular network) requires the client to adapt the video bitrate to optimize the user experience. In industrial DASH standard, videos are
-divided into multiple chunks, each of which represents a few seconds of the overall video playback. Each chunk is encoded at several discrete bitrates, where a higher bitrate implies a higher resolution and thus a larger chunk size. For this problem, each MDP episode is a video playback with a particular network trace (i.e., a time series of network throughput). At each step, the agent observes the past network throughput measurement, the current video buffer size, and the remaining portion of the video. The action is the bitrate for the next video chunk. The objective is to maximize the video resolution and minimize the stall (which occurs when download time of a chunk is larger than the current buffer size) and the reward
-is structured to be a linear combination of selected bitrate and the stall when downloading the corresponding chunk.
+The code for this project is based on the [NetLLM](https://github.com/duowuyms/NetLLM) repository. Thanks to the NetLLM team for providing the open source code!
 
 # Code Structure
 - `artifacts`: This directory stores some artifacts, e.g., result files.
@@ -33,7 +28,20 @@ is structured to be a linear combination of selected bitrate and the stall when 
     - `trainer.py`: Some codes for training (adapting) LLMs. 
     - `evaluate.py`: Some codes for evaluting the performance of adapted-LLMs.
     - `test.py`: Some codes for testing the performance of adapted LLMs.
-- `generate_exp_pool.py`: Implements the generation of experience pool (i.e., training dataset for LLM).
+
+- `PKL`: This directory is used to store experience pool files, including the data generated while running different algorithms under the L4S architecture.
+   The data was collected under conditions where the BBR, Prague, and CUBIC congestion control algorithms were running simultaneously.
+   - `1000bbr_exp_pool.pkl`: PKL file generated from running 1000 instances of the BBR algorithm under the L4S architecture.
+   - `1000cubic_exp_pool.pkl`: PKL file generated from running 1000 instances of the CUBIC algorithm under the L4S architecture.
+   - `1000prague_exp_pool.pkl`: PKL file generated from running 1000 instances of the Prague algorithm under the L4S architecture.
+   - `3000bbr_exp_pool.pkl`: PKL file generated from running 3000 instances of the BBR algorithm under the L4S architecture.
+   - `3000cubic_exp_pool.pkl`: PKL file generated from running 3000 instances of the CUBIC algorithm under the L4S architecture.
+   - `3000prague_exp_pool.pkl`: PKL file generated from running 3000 instances of the Prague algorithm under the L4S architecture.
+   - `5000bbr_exp_pool.pkl`: PKL file generated from running 5000 instances of the BBR algorithm under the L4S architecture.
+   - `5000cubic_exp_pool.pkl`: PKL file generated from running 5000 instances of the CUBIC algorithm under the L4S architecture.
+   - `5000prague_exp_pool.pkl`: PKL file generated from running 5000 instances of the Prague algorithm under the L4S architecture.
+
+- `my exp_pool_code.py`: Implements the generation of experience pool (i.e., training dataset for LLM).
 - `run_baseline.py`: The main file for running baselines. 
 - `run_plm.py`: The main file for running NetLLM.
 
