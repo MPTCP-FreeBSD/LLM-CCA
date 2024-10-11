@@ -84,14 +84,14 @@ If you want to finetune LLM, please run the following command.:
 ```sh
 python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --device-out cuda:1 --lr 0.0001 --warmup-steps 2000 --num-epochs 20 --eval-per-epoch 2 --exp-pool-path ./PKL/1000bbr_exp_pool.pkl 
 ```
-This command will finetune Llama2 on the default experience pool we provided at `PKL/1000bbr_exp_pool.pkl`. You can also switch to your desired PKL file based on the data you want to use
-If you want to use your own experience pool, first use the `my_exp_pool_code.py` to generate a new experience pool.
+This command will finetune Llama2 on the default experience pool we provided at `PKL/1000bbr_exp_pool.pkl`. You can also switch to your desired PKL file based on the data you want to use.
+If you want to use your own experience pool, first use the `my_exp_pool_code.py` to generate a new experience pool. However, you need to modify the my_exp_pool_code.py file and replace the path to the CSV file in it with the path and name of your own CSV file.
 ```sh
 python my_exp_pool_code.py
 ```
 Next, specify the path to your own experience pool with argument `--exp-pool-path` and run the following command:
 ```sh
-python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --lr 0.0001 --warmup-steps 2000 --num-epochs 80 --eval-per-epoch 2--exp-pool-path your_exp_pool_path
+python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --device-out cuda:1 --lr 0.0001 --warmup-steps 2000 --num-epochs 20 --eval-per-epoch 2 --exp-pool-path your_exp_pool_path
 ```
 
 **Test LLM**
