@@ -80,7 +80,7 @@ To run NetLLM, first we need to download some LLMs. For example, if you want to 
 
 **Finetune LLM**
 
-If you want to finetune LLM, please run the following command. The number after --num-epochs specifies how many times the model needs to be run in its entirety on the training dataset.:
+If you want to finetune LLM, please run the following command. The number after `--num-epochs` specifies how many times the model needs to be run in its entirety on the training dataset:
 ```sh
 python run_plm.py --adapt --grad-accum-steps 32 --plm-type llama --plm-size base --rank 128 --device cuda:0 --device-out cuda:1 --lr 0.0001 --warmup-steps 2000 --num-epochs 20 --eval-per-epoch 2 --exp-pool-path ./PKL/1000bbr_exp_pool.pkl 
 ```
