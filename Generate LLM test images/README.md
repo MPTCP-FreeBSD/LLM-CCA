@@ -1,4 +1,4 @@
-## Script: `llm_graphs test.ipynb`
+## Script
 
 This script is designed to visualize the test results of LLM-CCA. It processes the data generated from running LLM-CCA tests and creates graphical representations to help analyze the model's performance.
 
