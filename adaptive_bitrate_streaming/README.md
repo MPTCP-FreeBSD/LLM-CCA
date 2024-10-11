@@ -51,7 +51,12 @@ The code for this project is based on the [NetLLM](https://github.com/duowuyms/N
 
    `conda create -n abr_netllm python>=3.8.10`
 
-2. Then install the following depdendencies one by one:
+2. Activating the Conda environment
+   ```
+   conda activate abr_netllm
+   ```
+
+3. Then install the following depdendencies one by one:
 
    ```
    python==3.8.10
@@ -63,7 +68,7 @@ The code for this project is based on the [NetLLM](https://github.com/duowuyms/N
    peft==0.6.2
    ```
 
-3. Alternatively, you can install everything at once using the following command:
+4. Alternatively, you can install everything at once using the following command:
 
 ```
 python -m pip install --upgrade pip && pip install openprompt==1.0.1 && pip install numpy==1.24.4 && pip install peft==0.6.2 && pip install transformers==4.34.1 && pip install --upgrade huggingface_hub && pip install scikit-learn && pip install munch
