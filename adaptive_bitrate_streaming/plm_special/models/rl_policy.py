@@ -1,4 +1,3 @@
-#维度不匹配
 import random
 import numpy as np
 import torch
