@@ -195,8 +195,11 @@ def run(args):
         'trace_num': args.trace_num,
     }
 
+    exp_pool_path = "./artifacts/exp_pools/5000prague_exp_pool.pkl"
+
     # 3. create training dataset, fetch info
-    exp_pool = pickle.load(open(args.exp_pool_path, 'rb'))
+    exp_pool = pickle.load(open(exp_pool_path, 'rb'))
+    
     exp_dataset = ExperienceDataset(exp_pool, gamma=args.gamma, scale=args.scale, max_length=args.w, sample_step=args.sample_step)
     exp_dataset_info = Munch(exp_dataset.exp_dataset_info)
     print('Experience dataset info:')
